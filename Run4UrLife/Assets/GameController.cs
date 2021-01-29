@@ -19,11 +19,14 @@ public class GameController : MonoBehaviour
     [Header("Resize")]
     public float xReSize = 1f;
     public float yReSize = 1f;
+
+    private float lastNoise = 0;
+    private float diffBetweenNoises = 0;
     // Start is called before the first frame update
     void Start()
     {
         if(random) {
-            seed = Random.Range(0f, 1000f);
+            generateSeed();
         }
         
         createElements();
@@ -54,9 +57,27 @@ public class GameController : MonoBehaviour
         for (int x = 0; x < 10; x++)
         {
             float yDistance = (float)getPerlinNoise(x, seed, maxDistanceY);
+            if(lastNoise != 0)
+            {
+                diffBetweenNoises += lastNoise - yDistance;
+            }
+            lastNoise = yDistance;
             float xDistance = (float)getPerlinNoise(x, seed, maxDistanceX);
             platform[x] = Instantiate(prefab, new Vector2((x * xSize) + xDistance, yDistance), Quaternion.identity);
             platform[x].transform.localScale = new Vector2(xReSize, yReSize);
+        }
+    }
+
+    public void generateSeed()
+    {
+        seed = Random.Range(0f, 1000f);
+    }
+
+    public void changeNoise()
+    {
+        if(true)
+        {
+            generateSeed();
         }
     }
 
