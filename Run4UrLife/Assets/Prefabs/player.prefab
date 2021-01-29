@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3525595152312577382}
   - component: {fileID: 3525595152312577377}
   - component: {fileID: 7635228631163714480}
+  - component: {fileID: 5466691521304174580}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -136,7 +137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_JumpForce: 400
   m_MovementSmoothing: 0.05
-  m_AirControl: 0
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -144,6 +144,20 @@ MonoBehaviour:
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5466691521304174580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525595152312577381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf555c2b5136484ea45fa46edfbcc17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 7635228631163714480}
+  runSpeed: 40
 --- !u!1 &7158385871351882076
 GameObject:
   m_ObjectHideFlags: 0
