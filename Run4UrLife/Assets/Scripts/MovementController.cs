@@ -20,7 +20,6 @@ public class MovementController : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         if (Input.GetButtonDown("Jump")) { 
             jump = true;
-            Debug.Log("jumping");
         }
     }
 
