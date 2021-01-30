@@ -8,17 +8,35 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float runSpeed = 40f;
     private float horizontalMove;
     private bool jump = false;
+    private float currentSpeed;
+    // booster
+    [SerializeField] private float speedBoost = 10f;
+    [SerializeField] private float boostTime = 3;
+    private float boostTimer = 0;
+    private bool boosting = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentSpeed = runSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        if(boosting)
+		{
+            boostTimer += Time.deltaTime;
+            if (boostTimer >= boostTime)
+			{
+                Debug.Log("boosting");
+                currentSpeed = runSpeed;
+                boostTimer = 0;
+                boosting = false;
+			}
+		}
+
+        horizontalMove = Input.GetAxisRaw("Horizontal") * currentSpeed;
         if (Input.GetButtonDown("Jump")) { 
             jump = true;
         }
@@ -29,4 +47,18 @@ public class MovementController : MonoBehaviour
         controller.Move(horizontalMove * Time.deltaTime, jump);
         jump = false;
     }
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+        Debug.Log("collision trigger");
+        Debug.Log("collider " + collision.tag);
+        if (collision.CompareTag("booster"))
+		{
+            Debug.Log("boosting");
+            boosting = true;
+            currentSpeed = runSpeed + speedBoost;
+		}
+	}
+
+
 }
