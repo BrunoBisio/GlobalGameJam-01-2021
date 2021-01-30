@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
+        m_Rigidbody2D.velocity = Vector3.zero;
         this.transform.position = new Vector2(spawn.transform.position.x, spawn.transform.position.y);
     }
 }
