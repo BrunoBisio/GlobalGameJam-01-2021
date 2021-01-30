@@ -5,8 +5,7 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public PlayerController controller;
-    public float runSpeed = 40f;
-    public float airSpeed = 5f;
+    [SerializeField] private float runSpeed = 40f;
     private float horizontalMove;
     private bool jump = false;
 
@@ -27,10 +26,6 @@ public class MovementController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(jump)
-		{
-            horizontalMove = airSpeed;
-		}
         controller.Move(horizontalMove * Time.deltaTime, jump);
         jump = false;
     }
