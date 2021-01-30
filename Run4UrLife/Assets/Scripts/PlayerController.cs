@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
 
-    [SerializeField] float k_GroundedRadius = .2f;											// Radius of the overlap circle to determine if grounded
+    [SerializeField] float k_GroundedRadius = .2f;								// Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;													// Whether or not the player is grounded.
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;											// For determining which way the player is currently facing.
@@ -61,14 +61,10 @@ public class PlayerController : MonoBehaviour
 
 	public void Move(float move, bool jump)
 	{
-        if(m_Grounded)
-        {
-            // Move the character by finding the target velocity
-            Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
-            // And then smoothing it out and applying it to the character
-            m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-
-        }
+		// Move the character by finding the target velocity
+        Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+        // And then smoothing it out and applying it to the character
+        m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
         // If the input is moving the player right and the player is facing left...
         if (move > 0 && !m_FacingRight)
