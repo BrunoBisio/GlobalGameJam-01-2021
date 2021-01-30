@@ -5,9 +5,11 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public PlatformController platformController;
+    public WallGenerator wallController;
     public GameObject player;
     public GameObject verticalBarrier;
     private float nextMileStone = 0f;
+    private float distanceOfWalls = 0f;
     private float oldMileStone = -1000f;
     public int elementsToCreate = 10;
     public int creationLimit = 10;
@@ -25,7 +27,7 @@ public class GameController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        wallController.deleteLast(verticalBarrier.transform.position.x);
         if (platformController.lastPlatform != null && platformController.lastPlatform.transform.position.x - verticalBarrier.transform.position.x < deletionLimit)
         {
             platformController.DestroyPlatforms();
@@ -35,6 +37,7 @@ public class GameController : MonoBehaviour
         {
             oldMileStone = nextMileStone;
             nextMileStone = platformController.createElements(nextMileStone, elementsToCreate);
+            distanceOfWalls = wallController.generateWall(distanceOfWalls) +10;
         }
     }
 }

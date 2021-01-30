@@ -14,14 +14,6 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;											// For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
-	public GameObject spawn;
-    [SerializeField] public GameObject Spawn {
-        get { return spawn; }
-        set {
-            Destroy(spawn);
-            spawn = value;
-        }
-    }
 
     [Header("Events")]
 	[Space]
@@ -99,10 +91,5 @@ public class PlayerController : MonoBehaviour
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
-
-    public void Die()
-    {
-        m_Rigidbody2D.velocity = Vector3.zero;
-        this.transform.position = new Vector2(spawn.transform.position.x, spawn.transform.position.y);
-    }
+    
 }

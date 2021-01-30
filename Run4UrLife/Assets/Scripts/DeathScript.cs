@@ -23,7 +23,7 @@ public class DeathScript : MonoBehaviour
     {
         if(player.Equals(collision.gameObject))
         {
-            player.GetComponent<PlayerController>().Die();
+            //player.GetComponent<PlayerController>().Die();
         }
     }
 }
