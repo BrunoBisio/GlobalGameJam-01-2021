@@ -14,7 +14,7 @@ public class TimerService : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeLeft -= Time.deltaTime;
+        decreaseTimer(Time.deltaTime);
         if(timeLeft<= 0)
         {
             Time.timeScale = 0;
@@ -29,5 +29,10 @@ public class TimerService : MonoBehaviour
     public int getMinutes()
     {
         return Mathf.FloorToInt(timeLeft / 60);
+    }
+
+    public void decreaseTimer(float time)
+    {
+        timeLeft -= time;
     }
 }

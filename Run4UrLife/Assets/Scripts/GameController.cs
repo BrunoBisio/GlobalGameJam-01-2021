@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum states
+{
+    playing,
+    scene1,
+    scene2,
+    scene3,
+    lastChapter,
+    pause
+}
 public class GameController : MonoBehaviour
 {
     public PlatformController platformController;
@@ -14,6 +23,12 @@ public class GameController : MonoBehaviour
     public int elementsToCreate = 10;
     public int creationLimit = 10;
     public int deletionLimit = -20;
+    public states state = states.playing;
+    public GameObject Scene1;
+    public TimerService timer;
+    public bool scene1Viewed = false;
+    public List<Scene1> scenes = new List<Scene1>();
+    public Scene1 scene1Player;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +37,54 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Cost cost;
+        switch (state)
+        {
+            case states.playing:
+                Time.timeScale = 1;
+                Scene1.SetActive(false);
+                break;
+            case states.scene1:
+                Time.timeScale = 0;
+                 cost = scenes[0].playScene1();
+                timer.decreaseTimer(cost.timeCost);
+                state = cost.state;
+                break;
+            case states.scene2:
+                Time.timeScale = 0;
+                 cost = scenes[1].playScene1();
+                timer.decreaseTimer(cost.timeCost);
+                state = cost.state;
+                break;
+            case states.scene3:
+                Time.timeScale = 0;
+                 cost = scenes[2].playScene1();
+                timer.decreaseTimer(cost.timeCost);
+                state = cost.state;
+                break;
+            case states.lastChapter:
+                Time.timeScale = 0;
+                 cost = scenes[3].playScene1();
+                timer.decreaseTimer(cost.timeCost);
+                state = cost.state;
+                break;
+            case states.pause:
+                Time.timeScale = 0;
+                break;
+        }
         
     }
 
     private void FixedUpdate()
     {
+        foreach(Scene1 scene in scenes)
+        {
+            if (!scene.Viewed && player.transform.position.x >= scene.xCondition)
+            {
+                this.state = scene.Enable();
+            }
+        }
+       
         wallController.deleteLast(verticalBarrier.transform.position.x);
         if (platformController.lastPlatform != null && platformController.lastPlatform.transform.position.x - verticalBarrier.transform.position.x < deletionLimit)
         {
