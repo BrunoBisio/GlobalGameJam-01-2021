@@ -174,7 +174,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -320,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1273261068}
   - component: {fileID: 1273261067}
+  - component: {fileID: 1273261069}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -340,20 +341,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 2287257848103713204, guid: e237125a77878354a94c2e26c0cd629c, type: 3}
-  platform:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   maxDistanceX: 2
   maxDistanceY: 8
-  seed: 391.9632
+  seedX: 1.25
+  seedY: 1.25
   random: 1
   xSize: 4
   ySize: 1
@@ -373,6 +364,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1273261069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273261066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72f1614584987649ae6b3257965e77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformController: {fileID: 1273261067}
+  player: {fileID: 934996241}
 --- !u!1001 &1501058739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -692,6 +697,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635228631163714480, guid: 48c627a22dd43a747b0b1212aeccf63f,
+        type: 3}
+      propertyPath: m_JumpForce
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7635228631163714480, guid: 48c627a22dd43a747b0b1212aeccf63f,
         type: 3}
