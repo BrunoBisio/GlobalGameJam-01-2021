@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     public PlatformController platformController;
     public GameObject player;
+    public GameObject verticalBarrier;
     private float nextMileStone = 0f;
     private float oldMileStone = -1000f;
     public int elementsToCreate = 10;
@@ -25,10 +26,10 @@ public class GameController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (oldMileStone - player.transform.position.x < deletionLimit)
+        if (platformController.lastPlatform != null && platformController.lastPlatform.transform.position.x - verticalBarrier.transform.position.x < deletionLimit)
         {
-            platformController.DestroyPlatforms(10);
-            platformController.baseHeight += 0.1f;
+            platformController.DestroyPlatforms();
+            //platformController.baseHeight += 0.1f;
         }
         if (nextMileStone - player.transform.position.x < creationLimit)
         {

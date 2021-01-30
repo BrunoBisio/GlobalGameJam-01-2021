@@ -31,6 +31,8 @@ public class PlatformController : MonoBehaviour
 
     private float lastNoise = 0;
     private float diffBetweenNoises = 0;
+
+    public GameObject lastPlatform = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,14 +52,10 @@ public class PlatformController : MonoBehaviour
         
     }
     
-    public void DestroyPlatforms(int topXElements)
+    public void DestroyPlatforms()
     {
-        
-            for (int x = 0; x < topXElements && queue.Count > minNumberPlatform; x++)
-            {
-                GameObject platform = queue.Dequeue();
-                Destroy(platform, 0.5f);
-            }
+        Destroy(lastPlatform, 0.5f);
+        lastPlatform = queue.Dequeue();
         
        
         
@@ -76,6 +74,10 @@ public class PlatformController : MonoBehaviour
             lastNoise = yDistance;
             float xDistance = (float)getPerlinNoise(xD, seedX, maxDistanceX);
             xD = createPlatformm(xD, yDistance, xDistance);
+        }
+        if(lastPlatform == null)
+        {
+            lastPlatform = queue.Dequeue();
         }
         return xD;
     }
