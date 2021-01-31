@@ -15,6 +15,7 @@ public class Scene1 : MonoBehaviour
     public int correctOption = 1;
     public List<float> costs = new List<float>();
     public states state;
+    public GameObject blackOutSquare;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,11 +33,15 @@ public class Scene1 : MonoBehaviour
     public states Enable()
     {
         this.Viewed = true;
-        scene.SetActive(true);
+        StartCoroutine(FadeSquare());
         loadText();
         return states.scene1;
     }
 
+    private void internalEnable()
+    {
+        scene.SetActive(true);
+    }
     private void loadText()
     {
         textBox.text = texts[0];
@@ -67,5 +72,32 @@ public class Scene1 : MonoBehaviour
             }
         }
         return new Cost(0f, state);
+    }
+
+    public IEnumerator FadeSquare(bool fadeToBlack = true, float speed = .1f)
+    {
+        Color objectColor = blackOutSquare.GetComponent<Image>().color;
+        float fadeAmount;
+        if(fadeToBlack)
+        {
+            while(blackOutSquare.GetComponent<Image>().color.a<1)
+            {
+                fadeAmount = objectColor.a + (speed);
+                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                blackOutSquare.GetComponent<Image>().color = objectColor;
+                yield return new WaitForSecondsRealtime(.1f);
+            }
+            internalEnable();
+            StartCoroutine(FadeSquare(false));
+        } else
+        {
+            while (blackOutSquare.GetComponent<Image>().color.a > 0)
+            {
+                fadeAmount = objectColor.a - (speed);
+                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                blackOutSquare.GetComponent<Image>().color = objectColor;
+                yield return new WaitForSecondsRealtime(.1f);
+            }
+        }
     }
 }

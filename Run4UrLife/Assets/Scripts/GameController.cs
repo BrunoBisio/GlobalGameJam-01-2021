@@ -95,7 +95,11 @@ public class GameController : MonoBehaviour
         {
             oldMileStone = nextMileStone;
             nextMileStone = platformController.createElements(nextMileStone, elementsToCreate);
-            distanceOfWalls = wallController.generateWall(distanceOfWalls) +10;
+            //distanceOfWalls = wallController.generateWall(distanceOfWalls) +10;
+        }
+        if (distanceOfWalls - player.transform.position.x < creationLimit)
+        {
+            distanceOfWalls = wallController.generateWall(distanceOfWalls) + 10;
         }
     }
 }
