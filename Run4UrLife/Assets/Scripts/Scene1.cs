@@ -17,6 +17,8 @@ public class Scene1 : MonoBehaviour
     public List<float> costs = new List<float>();
     public states state;
     public GameObject blackOutSquare;
+    public Sprite nextBackground;
+    public GameObject background;
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +68,7 @@ public class Scene1 : MonoBehaviour
                     if (correctOption == (x + 1))
                     {
                         scene.SetActive(false);
+                        background.GetComponent<SpriteRenderer>().sprite = nextBackground;
                         return new Cost(costs[x], states.playing);
                     }
                     return new Cost(costs[x], state);
