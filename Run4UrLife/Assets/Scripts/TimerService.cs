@@ -6,7 +6,7 @@ public class TimerService : MonoBehaviour
 {
     public float timeLeft = 10f;
     public Scene1 lastScene;
-    public bool enabled = true;
+    public bool internalEnabled = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +16,12 @@ public class TimerService : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enabled)
+        if (internalEnabled)
         {
             decreaseTimer(Time.deltaTime);
             if (timeLeft <= 0)
             {
-                enabled = false;
+                internalEnabled = false;
                 lastScene.Enable();
             }
         }

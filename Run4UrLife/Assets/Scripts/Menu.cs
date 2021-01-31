@@ -28,7 +28,7 @@ public class Menu : MonoBehaviour
     public GameObject creditsO;
     [Header("GameController")]
     public GameController controller;
-    private bool internalEnabled = true;
+    private bool internalEnabled = false;
     // Start is called before the first frame update
     void Start()
     {
