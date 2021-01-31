@@ -21,6 +21,6 @@ public class CountDownController : MonoBehaviour
 
     string buildCountDownText()
     {
-        return timer.getMinutes() + ":" + timer.getSeconds();
+        return string.Format("{0,2:D2}",timer.getMinutes()) + ":" + string.Format("{0,2:D2}", timer.getSeconds());
     }
 }

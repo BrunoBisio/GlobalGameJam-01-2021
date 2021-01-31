@@ -5,6 +5,8 @@ using UnityEngine;
 public class TimerService : MonoBehaviour
 {
     public float timeLeft = 10f;
+    public Scene1 lastScene;
+    public bool enabled = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,21 +16,28 @@ public class TimerService : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        decreaseTimer(Time.deltaTime);
-        if(timeLeft<= 0)
+        if (enabled)
         {
-            Time.timeScale = 0;
+            decreaseTimer(Time.deltaTime);
+            if (timeLeft <= 0)
+            {
+                enabled = false;
+                lastScene.Enable();
+            }
         }
+        
     }
 
     public int getSeconds()
     {
-        return Mathf.FloorToInt(timeLeft % 60);
+        int res = Mathf.FloorToInt(timeLeft % 60);
+        return res < 0 ? 0 : res;
     }
 
     public int getMinutes()
     {
-        return Mathf.FloorToInt(timeLeft / 60);
+        int res = Mathf.FloorToInt(timeLeft / 60);
+        return res < 0 ? 0 : res;
     }
 
     public void decreaseTimer(float time)
