@@ -22,6 +22,7 @@ public class Scene1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scene.SetActive(false);
         //texts.Add(string.Format("Texto random de ejemplo, che puto como estas \n a re loco"));
         //texts.Add(string.Format("Segundo texto random de ejemplo, a que esto es genial"));
         //texts.Add(string.Format("Ojala esto termine pronto..."));
@@ -45,12 +46,12 @@ public class Scene1 : MonoBehaviour
     {
         scene.SetActive(true);
     }
-    private void loadText()
+    public void loadText()
     {
         textBox.text = string.Format(Regex.Unescape(texts[0]));
         texts.RemoveAt(0);
     }
-    public Cost playScene1()
+    public virtual Cost playScene1()
     {
         if (texts.Count > 0)
         {

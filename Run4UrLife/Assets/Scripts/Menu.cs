@@ -7,7 +7,9 @@ public enum menuState
 {
     main,
     settings,
-    credits
+    credits,
+    exit,
+    lastCredits
 }
 public class Menu : MonoBehaviour
 {
@@ -26,6 +28,8 @@ public class Menu : MonoBehaviour
     public GameObject mainO;
     public GameObject settingsO;
     public GameObject creditsO;
+    public GameObject exitConfirmationO;
+    public GameObject lastCreditsO;
     [Header("GameController")]
     public GameController controller;
     private bool internalEnabled = false;
@@ -36,12 +40,6 @@ public class Menu : MonoBehaviour
     }
     private void Awake()
     {
-        startB.GetComponent<Button>().onClick.AddListener(() => start());
-        settingsB.GetComponent<Button>().onClick.AddListener(() => settings());
-        creditsB.GetComponent<Button>().onClick.AddListener(() => credits());
-        exitB.GetComponent<Button>().onClick.AddListener(() => exit());
-        settingBackB.GetComponent<Button>().onClick.AddListener(() => goBack());
-        creditsBackB.GetComponent<Button>().onClick.AddListener(() => goBack());
     }
     // Update is called once per frame
     void Update()
@@ -53,16 +51,32 @@ public class Menu : MonoBehaviour
                 mainO.SetActive(true);
                 settingsO.SetActive(false);
                 creditsO.SetActive(false);
+                exitConfirmationO.SetActive(false);
+                lastCreditsO.SetActive(false);
                 break;
             case menuState.settings:
                 mainO.SetActive(false);
                 settingsO.SetActive(true);
                 creditsO.SetActive(false);
+                exitConfirmationO.SetActive(false);
+                lastCreditsO.SetActive(false);
                 break;
             case menuState.credits:
                 mainO.SetActive(false);
                 settingsO.SetActive(false);
                 creditsO.SetActive(true);
+                exitConfirmationO.SetActive(false);
+                lastCreditsO.SetActive(false);
+                break;
+            case menuState.exit:
+                exitConfirmationO.SetActive(true);
+                break;
+            case menuState.lastCredits:
+                mainO.SetActive(false);
+                settingsO.SetActive(false);
+                creditsO.SetActive(false);
+                exitConfirmationO.SetActive(false);
+                lastCreditsO.SetActive(true);
                 break;
         }    
     }
@@ -75,6 +89,13 @@ public class Menu : MonoBehaviour
             this.state = menuState.main;
             canvas.SetActive(enabled);
         }
+    }
+
+    public void LastCredits()
+    {
+        this.internalEnabled = enabled;
+        this.state = menuState.lastCredits;
+        canvas.SetActive(enabled);
     }
     public void credits()
     {
@@ -94,6 +115,11 @@ public class Menu : MonoBehaviour
         this.state = menuState.settings;
     }
     public void exit()
+    {
+        this.state = menuState.exit;
+    }
+
+    public void reallyCloseThis()
     {
         Application.Quit();
     }

@@ -9,7 +9,8 @@ public enum states
     scene2,
     scene3,
     lastChapter,
-    menu
+    menu,
+    lastCredits
 }
 public class GameController : MonoBehaviour
 {
@@ -57,7 +58,11 @@ public class GameController : MonoBehaviour
                 state = cost.state;
                 break;
             case states.scene3:
+
+                wallController.deleteAll();
+                platformController.destroyAll();
                 Time.timeScale = 0;
+
                  cost = scenes[2].playScene1();
                 timer.decreaseTimer(cost.timeCost);
                 state = cost.state;
@@ -71,6 +76,10 @@ public class GameController : MonoBehaviour
             case states.menu:
                 Time.timeScale = 0;
                 menu.toggleMenu(true);
+                break;
+            case states.lastCredits:
+                Time.timeScale = 0;
+                menu.LastCredits();
                 break;
         }
         
@@ -96,7 +105,7 @@ public class GameController : MonoBehaviour
             platformController.DestroyPlatforms();
             //platformController.baseHeight += 0.1f;
         }
-        if(!scenes[3].Viewed) {
+        if(!scenes[2].Viewed) {
             if (nextMileStone - player.transform.position.x < creationLimit)
             {
                 oldMileStone = nextMileStone;
@@ -107,11 +116,6 @@ public class GameController : MonoBehaviour
             {
                 distanceOfWalls = wallController.generateWall(distanceOfWalls) + 10;
             }
-        }
-        else
-        {
-            wallController.deleteAll();
-            platformController.destroyAll();
         }
 
     }
