@@ -5008,12 +5008,16 @@ MonoBehaviour:
   xCondition: 150
   textBox: {fileID: 56259947}
   texts:
-  - Ah mira que cornudo eras
+  - '*Puedes observar a tu pareja ocupada con su trabajo*'
+  - '*intentas hablar con ella pero no te escuha nada que le digas*'
+  - Tratas de interactuar con el entorno para que reaccione
+  - 1) tocas su computadora (cuesta 15 seg)\n2) Tocas la ventana(cuesta 20 segs)\n3)
+    Tratas de mover cosas por la habitacion (cuesta 2 min)
   correctOption: 1
   costs:
-  - 5
-  - 10
   - 15
+  - 20
+  - 120
   state: 1
   blackOutSquare: {fileID: 1369024566}
   nextBackground: {fileID: 21300000, guid: 9a0f9c631dc524346901d8b9c13d4db8, type: 3}
@@ -5035,7 +5039,10 @@ MonoBehaviour:
   xCondition: 250
   textBox: {fileID: 1198319967}
   texts:
-  - Tal vez no te moriste perro
+  - '"Hola alma perdida"'
+  - '"Entiendo que esto sea algo confuso para vos... pero tal vez tengas alguna opcion'''
+  - '''Trata de encontrar tu cuerpo, tal vez haya alguna oportunidad mas'''
+  - 1) Busca tu cuerpo (1 minuto)
   correctOption: 1
   costs:
   - 60
@@ -5060,10 +5067,17 @@ MonoBehaviour:
   xCondition: 200
   textBox: {fileID: 1179875658}
   texts:
-  - Arre que tu familia no te quiere
-  correctOption: 1
+  - '*Ves a tu hermano mirando la television*'
+  - '*Parece que ni se acuerda de vos*'
+  - '*Vuelves a intentar gritar pero no funciona, asi que decides interactuar con
+    la habitacion*'
+  - 1) Tiras su cafe (15 seg) \n 2) Gritas por la habitacion tratando de tirar cosas
+    (3 minutos) \n3) Apagas la tele (20 segs)
+  correctOption: 3
   costs:
-  - 150
+  - 15
+  - 180
+  - 20
   state: 2
   blackOutSquare: {fileID: 1369024566}
   nextBackground: {fileID: 21300000, guid: 0b75017c74bea484685a3c22d54c003a, type: 3}
@@ -5111,10 +5125,12 @@ MonoBehaviour:
   xCondition: 300
   textBox: {fileID: 367695089}
   texts:
-  - jhkjh
+  - '*Has encontrato tu cuerpo en el hospital, en su cama.*'
+  - '*Nadie ha venido a verte... no sabes que hacer con tu vida..*'
+  - 1) Espera a que llegue alguien ( tiempo indefinido)
   correctOption: 1
   costs:
-  - 5
+  - 0
   state: 4
   blackOutSquare: {fileID: 1369024566}
   nextBackground: {fileID: 21300000, guid: 9a0f9c631dc524346901d8b9c13d4db8, type: 3}
