@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class Scene1 : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class Scene1 : MonoBehaviour
         this.Viewed = true;
         StartCoroutine(FadeSquare());
         loadText();
-        return states.scene1;
+        return state;
     }
 
     private void internalEnable()
@@ -44,7 +45,7 @@ public class Scene1 : MonoBehaviour
     }
     private void loadText()
     {
-        textBox.text = texts[0];
+        textBox.text = string.Format(Regex.Unescape(texts[0]));
         texts.RemoveAt(0);
     }
     public Cost playScene1()
@@ -60,9 +61,9 @@ public class Scene1 : MonoBehaviour
         {
             for (int x = 0; x < costs.Count; x++)
             {
-                if (Input.GetKeyDown(x.ToString()))
+                if (Input.GetKeyDown((x+1).ToString()))
                 {
-                    if (correctOption == x)
+                    if (correctOption == (x + 1))
                     {
                         scene.SetActive(false);
                         return new Cost(costs[x], states.playing);

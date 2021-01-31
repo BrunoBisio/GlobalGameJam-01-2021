@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
         {
             case states.playing:
                 Time.timeScale = 1;
-                Scene1.SetActive(false);
+                //Scene1.SetActive(false);
                 break;
             case states.scene1:
                 Time.timeScale = 0;
