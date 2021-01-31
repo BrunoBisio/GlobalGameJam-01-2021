@@ -911,6 +911,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2690456846829473146, guid: 1a761641db88bdb4885661c3471df450,
+        type: 3}
+      propertyPath: cameraO
+      value: 
+      objectReference: {fileID: 519420028}
     - target: {fileID: 2690456846829473149, guid: 1a761641db88bdb4885661c3471df450,
         type: 3}
       propertyPath: m_Enabled
@@ -2118,7 +2123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  camera: {fileID: 519420028}
+  cameraO: {fileID: 519420028}
 --- !u!212 &628559543
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3960,7 +3965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLeft: 600
   lastScene: {fileID: 1273261074}
-  enabled: 1
+  internalEnabled: 1
 --- !u!114 &1273261073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3975,7 +3980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: {fileID: 764310234}
   Viewed: 0
-  xCondition: 10
+  xCondition: 150
   textBox: {fileID: 56259947}
   texts:
   - Ah mira que cornudo eras
@@ -4002,7 +4007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: {fileID: 381730560}
   Viewed: 0
-  xCondition: 40
+  xCondition: 300
   textBox: {fileID: 367695089}
   texts:
   - Moriste Perro
@@ -4027,7 +4032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: {fileID: 1663154948}
   Viewed: 0
-  xCondition: 30
+  xCondition: 250
   textBox: {fileID: 1198319967}
   texts:
   - Tal vez no te moriste perro
@@ -4052,7 +4057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene: {fileID: 1465664116}
   Viewed: 0
-  xCondition: 20
+  xCondition: 200
   textBox: {fileID: 1179875658}
   texts:
   - Arre que tu familia no te quiere
@@ -6063,6 +6068,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2690456846829473146, guid: 1a761641db88bdb4885661c3471df450,
+        type: 3}
+      propertyPath: cameraO
+      value: 
+      objectReference: {fileID: 519420028}
     - target: {fileID: 2690456846829473149, guid: 1a761641db88bdb4885661c3471df450,
         type: 3}
       propertyPath: m_Enabled
