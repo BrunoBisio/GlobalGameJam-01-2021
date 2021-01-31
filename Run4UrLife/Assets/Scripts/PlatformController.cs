@@ -51,7 +51,17 @@ public class PlatformController : MonoBehaviour
     {
         
     }
-    
+
+
+    public void destroyAll() {
+        while(queue.Count >0)
+        {
+            DestroyPlatforms();
+        }
+
+    }
+
+
     public void DestroyPlatforms()
     {
         Destroy(lastPlatform, 0.5f);

@@ -96,15 +96,23 @@ public class GameController : MonoBehaviour
             platformController.DestroyPlatforms();
             //platformController.baseHeight += 0.1f;
         }
-        if (nextMileStone - player.transform.position.x < creationLimit)
-        {
-            oldMileStone = nextMileStone;
-            nextMileStone = platformController.createElements(nextMileStone, elementsToCreate);
-            //distanceOfWalls = wallController.generateWall(distanceOfWalls) +10;
+        if(!scenes[3].Viewed) {
+            if (nextMileStone - player.transform.position.x < creationLimit)
+            {
+                oldMileStone = nextMileStone;
+                nextMileStone = platformController.createElements(nextMileStone, elementsToCreate);
+                //distanceOfWalls = wallController.generateWall(distanceOfWalls) +10;
+            }
+            if (distanceOfWalls - player.transform.position.x < creationLimit)
+            {
+                distanceOfWalls = wallController.generateWall(distanceOfWalls) + 10;
+            }
         }
-        if (distanceOfWalls - player.transform.position.x < creationLimit)
+        else
         {
-            distanceOfWalls = wallController.generateWall(distanceOfWalls) + 10;
+            wallController.deleteAll();
+            platformController.destroyAll();
         }
+
     }
 }

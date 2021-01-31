@@ -27,7 +27,14 @@ public class WallGenerator : MonoBehaviour
     {
         
     }
-
+    public void deleteAll()
+    {
+        while(list.Count > 0)
+        {
+            Destroy(list[0], 0.5f);
+            list.RemoveAt(0);
+        }
+    }
     public void deleteLast(float x)
     {
         if(list.Count > 0)
