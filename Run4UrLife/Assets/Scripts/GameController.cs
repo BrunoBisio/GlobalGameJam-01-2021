@@ -9,7 +9,7 @@ public enum states
     scene2,
     scene3,
     lastChapter,
-    pause
+    menu
 }
 public class GameController : MonoBehaviour
 {
@@ -23,12 +23,12 @@ public class GameController : MonoBehaviour
     public int elementsToCreate = 10;
     public int creationLimit = 10;
     public int deletionLimit = -20;
-    public states state = states.playing;
+    public states state = states.menu;
     public GameObject Scene1;
     public TimerService timer;
     public bool scene1Viewed = false;
     public List<Scene1> scenes = new List<Scene1>();
-    public Scene1 scene1Player;
+    public Menu menu;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,8 +68,9 @@ public class GameController : MonoBehaviour
                 timer.decreaseTimer(cost.timeCost);
                 state = cost.state;
                 break;
-            case states.pause:
+            case states.menu:
                 Time.timeScale = 0;
+                menu.toggleMenu(true);
                 break;
         }
         
