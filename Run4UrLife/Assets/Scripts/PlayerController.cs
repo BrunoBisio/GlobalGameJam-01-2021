@@ -8,14 +8,16 @@ public class PlayerController : MonoBehaviour
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
 	[SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
-
-    [SerializeField] float k_GroundedRadius = .2f;											// Radius of the overlap circle to determine if grounded
+	[SerializeField] private float k_GroundedRadius = .2f;						// Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;													// Whether or not the player is grounded.
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;											// For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	// animator
+	private Animator animator;
+	private float lastVerticalPosition;
 
-    [Header("Events")]
+	[Header("Events")]
 	[Space]
 
 	public UnityEvent OnLandEvent;
@@ -26,9 +28,12 @@ public class PlayerController : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
+
+		lastVerticalPosition = transform.position.y;
 	}
 
 	private void FixedUpdate()
@@ -48,12 +53,13 @@ public class PlayerController : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
+		animator.SetFloat("speed_y", m_Rigidbody2D.velocity.y);
+		animator.SetBool("grounded", m_Grounded);
 	}
 
 
 	public void Move(float move, bool jump)
 	{
-        
 		// Move the character by finding the target velocity
 		Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 		// And then smoothing it out and applying it to the character
@@ -79,6 +85,7 @@ public class PlayerController : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
+		animator.SetFloat("speed_x", move);
 	}
 
 

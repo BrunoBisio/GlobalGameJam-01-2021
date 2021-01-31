@@ -29,7 +29,6 @@ public class MovementController : MonoBehaviour
             boostTimer += Time.deltaTime;
             if (boostTimer >= boostTime)
 			{
-                Debug.Log("boosting");
                 currentSpeed = runSpeed;
                 boostTimer = 0;
                 boosting = false;
@@ -50,11 +49,8 @@ public class MovementController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-        Debug.Log("collision trigger");
-        Debug.Log("collider " + collision.tag);
         if (collision.CompareTag("booster"))
 		{
-            Debug.Log("boosting");
             boosting = true;
             currentSpeed = runSpeed + speedBoost;
 		}
