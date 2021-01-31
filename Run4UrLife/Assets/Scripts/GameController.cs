@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
     public int deletionLimit = -20;
     public states state = states.menu;
     public GameObject Scene1;
+    public AudioManager audioManager;
     public TimerService timer;
     public bool scene1Viewed = false;
     public List<Scene1> scenes = new List<Scene1>();
@@ -33,6 +34,8 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (state == states.menu)
+            audioManager.Play(new string[] { "introMenu", "mainMenu" });
     }
 
     // Update is called once per frame
