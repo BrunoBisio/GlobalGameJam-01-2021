@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
+		Debug.Log("speed_y: " + m_Rigidbody2D.velocity.y);
 		animator.SetFloat("speed_y", m_Rigidbody2D.velocity.y);
 		animator.SetBool("grounded", m_Grounded);
 	}
