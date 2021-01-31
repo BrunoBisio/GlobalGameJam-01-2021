@@ -78,6 +78,10 @@ public class GameController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            this.state = states.menu;
+        }
         foreach(Scene1 scene in scenes)
         {
             if (!scene.Viewed && player.transform.position.x >= scene.xCondition)
